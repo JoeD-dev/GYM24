@@ -1,0 +1,40 @@
+@font-face {
+    font-family: 'Bruno Ace SC';
+    src: url('../Fonts/Bruno_Ace_SC.woff2');
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'MADE Outer Sans';
+    src: url('../Fonts/MADE\ Outer\ Sans.woff2');
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+}
+
+:root {
+    --font-family-main: 'MADE Outer Sans','Segoe UI', arial;
+    --font-family-logo: 'Bruno Ace SC', impact, sans-serif;
+    --color-black: #000;
+    --color-white: #fff;
+    --color-yellow: #faff00;
+    --font-size-logo:  3rem;
+    --font-size-hero-heading: 5rem;
+    --font-size-heading: 3.5rem;
+    --font-size-subheading: 2.25rem;
+    --font-size-text: 1.75rem;
+    --large-button-height: 52px;
+    --socials-button-height:40px;
+    --small-button-height:30px;
+}
+body {
+    font-family: var(--font-family-main);
+    background-color: var(--color-black);
+    color: var(--color-white);
+
+}
+.logo {
+    font-family: 'Bruno Ace SC';
+    text-transform: uppercase;
+}
