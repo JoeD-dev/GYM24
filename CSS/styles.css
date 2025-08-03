@@ -2,14 +2,14 @@
     font-family: 'Bruno Ace SC';
     src: url('../Fonts/Bruno_Ace_SC.woff2');
     font-style: normal;
-    font-weight: 100 900;
+    font-weight: normal;
     font-display: swap;
 }
 @font-face {
     font-family: 'MADE Outer Sans';
     src: url('../Fonts/MADE\ Outer\ Sans.woff2');
     font-style: normal;
-    font-weight: 100 900;
+    font-weight: normal;
     font-display: swap;
 }
 
@@ -59,7 +59,7 @@ body {
     font-size: var(--font-size-logo);
     color: var(--color-white);
     text-decoration: none;
-    font-family: 'Bruno Ace SC';
+    font-family: var(--font-family-logo);
     text-transform: uppercase;
 }
 .logo span {
@@ -106,4 +106,38 @@ body {
     height: 3px;
     border-radius: 2px;
     background-color: var(--color-white);
+}
+.hero {
+    width: 100%;
+    height: 410px;
+    background-image:
+     linear-gradient(70deg,rgb(0, 0, 0) 25%, rgba(0, 0, 0, 0.595) 61%, rgba(0, 0, 0, 0.081) 100%),
+     url(../Images/hero-bg.jpg);
+     background-position: 100px 0 ;
+     background-size: 90%;
+     background-repeat: no-repeat;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: space-between;
+     padding-inline: 55px;
+
+}
+.hero-heading {
+    margin-top: 105px;
+    flex-grow: 0;
+    font-size: var(--font-size-hero-heading);
+    font-weight: 600;
+    text-align: center;
+}.hero-button {
+    height: var(--large-button-height);
+    width: 175px;
+    background-color: var(--color-yellow);
+    color: var(--color-black);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
 }
