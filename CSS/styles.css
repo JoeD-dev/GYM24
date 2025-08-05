@@ -177,9 +177,6 @@ body {
     display: flex;
     justify-content: center;
 }
-.eq-svg {
-    min-width: 80px !important;
-}
 .desc-heading {
     font-size: var(--font-size-subheading) ;
     font-weight: 600;
@@ -286,7 +283,7 @@ body {
     }
     .adv-container{
         flex-basis: 49%;
-        gap: 5px;
+        gap: 15px;
     }
     .last {
         justify-content: end;
