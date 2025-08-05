@@ -19,7 +19,9 @@
     --color-black: #000;
     --color-white: #fff;
     --color-yellow: #faff00;
+    --color-gray: #222;
     --font-size-logo:  3rem;
+    --font-size-price: 3rem;
     --font-size-hero-heading: 5rem;
     --font-size-heading: 3.5rem;
     --font-size-subheading: 2.25rem;
@@ -158,8 +160,9 @@ body {
     align-items: center;
     gap:70px;
 }
-.adv-heading {
+.section-heading {
     font-size: var(--font-size-heading);
+    text-align: center;
 }
 .all-advantages{
     display: flex;
@@ -184,6 +187,63 @@ body {
 .desc-text {
     max-width: 430px;
 }
+.membership {
+    padding-inline: 55px !important;
+    margin-top: 200px;
+}
+.plan-container {
+    margin-top: 70px;
+}
+.plan {
+    background-color: var(--color-gray);
+    border-radius: 10px;
+    width: 275px !important;
+    height: 420px  !important;
+    display: flex !important;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+}
+.plan-heading {
+    font-size: var(--font-size-subheading);
+    margin-top: 22px;
+    text-align: center;
+    font-weight: 700;
+}
+.price {
+    font-size: var(--font-size-price);
+    text-align: center;
+    font-weight: 700;
+    padding-block: 10px;
+    border-bottom: 1px solid black;
+    width: 100%;
+}
+.features {
+    margin-top: 30px;
+    gap: 10px;
+    padding-inline: 25px;
+    display: flex !important;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 40px;
+}
+.feature-container {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+.feature-container svg {
+    flex-shrink: 0;
+}
+.plan-button {
+    min-height: var(--small-button-height);
+    border-radius: 30px;
+    width: 110px;
+    border: none;
+    background-color: var(--color-yellow);
+    margin-block: auto 40px;
+}
+
 
 
 
@@ -266,6 +326,11 @@ body {
         justify-content: start;
         gap: 30px;
     }
+    .plan-container {
+        flex-wrap: wrap;
+        gap: 35px;
+        justify-content: center;
+    }
 }
 @media(min-width: 1000px) {
     :root {
@@ -302,5 +367,14 @@ body {
         linear-gradient(90deg,rgb(0, 0, 0) 15%, rgba(0, 0, 0, 0) 51%, rgba(0, 0, 0, 0) 71%, rgba(0, 0, 0, 0.927) 100%),
         linear-gradient(0deg,rgba(0, 0, 0, 0.822) 5%, rgba(0, 0, 0, 0) 51%, rgba(0, 0, 0, 0.081) 100%),
         url(../Images/hero-bg.jpg);
+    }
+    .membership {
+        padding-inline: 30px !important;
+    }
+    .plan {
+        height: 470px !important;
+    }
+    .plan-container {
+        gap: 55px;
     }
 }  
