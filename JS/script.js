@@ -16,4 +16,22 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
     });
+
+    if (window.innerWidth <= 744) {
+        const swiper = new Swiper('.swiper', {
+        loop: true,
+        watchSlidesProdress: true,
+        watchSlidesVisibility: true,
+        slidesPerView: 'auto',
+        spaceBetween: 12,
+        grabCursor: true,
+        centeredSlides: true,
+        initialSlide: 1,
+        });
+        setTimeout(() => {
+            swiper.update();
+        
+        }, 100);
+    }
 });
+
