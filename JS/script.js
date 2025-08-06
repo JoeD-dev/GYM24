@@ -16,9 +16,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
     });
-
-    if (window.innerWidth <= 744) {
-        const swiper = new Swiper('.swiper', {
+    let mobileSwiper = null;
+    const BREAKPOINT = 744;
+    function handleMobileSwiper() {
+        if (mobileSwiper === null && window.innerWidth <= BREAKPOINT) {
+        mobileSwiper = new Swiper('.swiper', {
         loop: true,
         watchSlidesProdress: true,
         watchSlidesVisibility: true,
@@ -32,6 +34,19 @@ document.addEventListener('DOMContentLoaded', () => {
             swiper.update();
         
         }, 100);
-    }
+        }else if(mobileSwiper !== null && window.innerWidth > BREAKPOINT)  { 
+            mobileSwiper.destroy(true, true);
+            mobileSwiper = null;
+        };
+    };
+    function debounce(func, delay) {
+        let timeout;
+        return function() {
+            clearTimeout(timeout);
+            timeout = setTimeout(func,delay);
+        };
+    };
+    window.addEventListener('load', handleMobileSwiper);
+    window.addEventListener('resize', handleMobileSwiper, 200);
 });
 
