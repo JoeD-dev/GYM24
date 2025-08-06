@@ -191,10 +191,10 @@ body {
     padding-inline: 55px !important;
     margin-top: 200px;
 }
-.plan-container {
+.plan-container,.trainer-container {
     margin-top: 70px;
 }
-.plan {
+.plan, .trainer {
     background-color: var(--color-gray);
     border-radius: 10px;
     width: 275px !important;
@@ -292,6 +292,39 @@ body {
 }
 .controls button svg {
     transform: scale(1.5);
+}
+.trainers {
+    margin-bottom: 250px;
+}
+.trainer {
+    border-radius: 20px;
+}
+.trainer-img-container {
+    margin: 20px;
+    border-radius: 15px;
+    overflow: hidden;
+}
+.trainer-name {
+    font-size: var(--font-size-subheading);
+    margin-bottom: 20px;
+}
+.socials {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+.social-icons {
+    width: 40px;
+    aspect-ratio: 1/1;
+    border: 1px solid var(--color-white);
+    border-radius: 50%;
+}
+.social {
+    width: 100%;
+    aspect-ratio: 1/1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 
@@ -427,10 +460,10 @@ body {
     .membership {
         padding-inline: 30px !important;
     }
-    .plan {
+    .plan, .trainer {
         height: 470px !important;
     }
-    .plan-container {
+    .plan-container, .trainer-container {
         gap: 55px;
     }
     .controls-container {
@@ -456,5 +489,17 @@ body {
     .description {
         flex-basis: 45%;
         flex-shrink: 0;
+    }
+    .trainers {
+        display: flex !important;
+        flex-direction: column;
+        align-items: center;
+
+    }
+    .trainer-container {
+        width: 895px !important;
+        flex-wrap: wrap;
+        gap: 35px;
+
     }
 }  
