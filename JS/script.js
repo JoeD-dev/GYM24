@@ -18,7 +18,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     let aboutSlider = null;
     let mobileSwiper = null;
+    let mobileSwiper2 = null;
     const BREAKPOINT = 744;
+    const BREAKPOINT2 = 1000;
     function handleMobileSwiper() {
         if (mobileSwiper === null && window.innerWidth <= BREAKPOINT) {
             mobileSwiper = new Swiper('.membership', {
@@ -31,6 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 centeredSlides: true,
                 initialSlide: 1,
             });
+            
             if(aboutSlider !== null) {
                 aboutSlider.destroy(true, true);
             }
@@ -59,6 +62,27 @@ document.addEventListener('DOMContentLoaded', () => {
                     prevEl: '.prev'
                 }
             })
+        };
+        if (mobileSwiper2 === null && window.innerWidth < BREAKPOINT2) {
+            console.log(1)
+            mobileSwiper2 = new Swiper('.trainers', {
+                loop: true,
+                watchSlidesProdress: true,
+                watchSlidesVisibility: true,
+                slidesPerView: 'auto',
+                spaceBetween: 12,
+                grabCursor: true,
+                centeredSlides: true,
+                breakpoints: {
+                    744: {
+                        spaceBetween: 35,
+                    },
+                }
+            });
+        }else if (mobileSwiper2 !== null && window.innerWidth >= BREAKPOINT2) {
+            console.log(2)
+            mobileSwiper2.destroy(true, true);
+            mobileSwiper2 = null;
         }
     };
     function debounce(func, delay) {
