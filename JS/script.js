@@ -108,6 +108,18 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     window.addEventListener('load', handleMobileSwiper);
     window.addEventListener('resize', handleMobileSwiper, 200);
+
+    const closeModal = document.querySelector('.close');
+    const modal = document.querySelector('.modal');
+    const openModal = document.querySelectorAll('.plan-button');
+    closeModal.addEventListener('click',() => {
+        modal.classList.add('removed');
+    })
+    openModal.forEach(element => {
+        element.addEventListener('click', () => {
+            modal.classList.remove('removed');
+        })
+    })
     
 });
 
