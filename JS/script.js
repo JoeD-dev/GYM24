@@ -16,7 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
     });
-    let aboutSlider = null;
+    let aboutSlider1 = null;
+    let aboutSlider2 = null;
     let mobileSwiper = null;
     let mobileSwiper2 = null;
     const BREAKPOINT = 744;
@@ -25,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (mobileSwiper === null && window.innerWidth <= BREAKPOINT) {
             mobileSwiper = new Swiper('.membership', {
                 loop: true,
-                watchSlidesProdress: true,
+                watchSlidesProgress: true,
                 watchSlidesVisibility: true,
                 slidesPerView: 'auto',
                 spaceBetween: 12,
@@ -33,38 +34,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 centeredSlides: true,
                 initialSlide: 1,
             });
-            
-            if(aboutSlider !== null) {
-                aboutSlider.destroy(true, true);
-            }
-            aboutSlider = new Swiper ('.about-slider', {
-                loop: true,
-                pagination: false,
-                spaceBetween: 12,
-            })
         }else if(mobileSwiper !== null && window.innerWidth > BREAKPOINT)  { 
             mobileSwiper.destroy(true, true);
             mobileSwiper = null;
             
-        }else if(window.innerWidth > BREAKPOINT) {
-            if(aboutSlider !== null) {
-                aboutSlider.destroy(true, true);
-            }
-            aboutSlider = new Swiper ('.about-slider', {
-                loop: true,
-                spaceBetween: 12,
-                slidesPerView: 1,
-                pagination: {
-                    el: '.pagination',
-                },
-                navigation: {
-                    nextEl: '.next',
-                    prevEl: '.prev'
-                }
-            })
-        };
+        }
         if (mobileSwiper2 === null && window.innerWidth < BREAKPOINT2) {
-            console.log(1)
+          
             mobileSwiper2 = new Swiper('.trainers', {
                 loop: true,
                 watchSlidesProdress: true,
@@ -80,9 +56,47 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         }else if (mobileSwiper2 !== null && window.innerWidth >= BREAKPOINT2) {
-            console.log(2)
             mobileSwiper2.destroy(true, true);
             mobileSwiper2 = null;
+            
+        }
+        if(window.innerWidth <= BREAKPOINT2) {
+            if(aboutSlider2 !== null) {
+                aboutSlider2.destroy(true, true);
+                aboutSlider2 = null;
+            };
+            if(aboutSlider1 === null) {
+                aboutSlider1 = new Swiper ('.about-slider', {
+                loop: true,
+                pagination: false,
+                watchSlidesProgress: true,
+                watchSlidesVisibility: true,
+                slidesPerView: 'auto',
+                spaceBetween: 12,
+                centeredSlides: true,
+            });
+            };
+            
+        }else if(window.innerWidth > BREAKPOINT2) {
+            if(aboutSlider1 !== null) {
+                aboutSlider1.destroy(true, true);
+                aboutSlider1 = null;
+            }; 
+            if(aboutSlider2 === null) {
+                aboutSlider2 = new Swiper ('.about-slider', {
+                loop: true,
+                spaceBetween: 12,
+                slidesPerView: 1,
+                pagination: {
+                    el: '.pagination',
+                },
+                navigation: {
+                    nextEl: '.next',
+                    prevEl: '.prev'
+                }
+            });
+            };
+            
         }
     };
     function debounce(func, delay) {
