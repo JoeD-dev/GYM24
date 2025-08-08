@@ -1,32 +1,64 @@
 const burgerButton = document.querySelector('.burger');
-const navigationMenu = document.querySelector('.navigation')
+const navigationMenu = document.querySelector('.navigation');
+const navigationList = document.querySelector('.nav-list');
+let aboutSlider1 = null;
+let aboutSlider2 = null;
+let mobileSwiper = null;
+let mobileSwiper2 = null;
+const BREAKPOINT = 744;
+const BREAKPOINT2 = 1000;
+
+const getFocusableElements = (container) => {
+    return container.querySelectorAll('a[href], button:not(disabled), input:not(disabled), select, textarea, [tabindex]:not([tabindex="-1"])'
+    );
+};
+
+const trapFocus = (window) => {
+    const focusableElements = getFocusableElements(window);
+    const firstElement = focusableElements[0];
+    const lastElement = focusableElements[focusableElements.length - 1];
+
+    const handleKeyDown = (element) => {
+        if(element.key === 'Tab') {
+            if(focusableElements.length === 0) return;
+            if(element.shiftKey) {
+                if (document.activeElement === firstElement) {
+                    element.preventDefault();
+                    lastElement.focus();
+                };
+            }else{
+                if(document.activeElement === lastElement) {
+                    element.preventDefault();
+                    firstElement.focus();
+                };
+            };
+        };
+    };
+    window.addEventListener('keydown',handleKeyDown);
+    setTimeout(() => firstElement?.focus(),0);
+};
 
 document.addEventListener('DOMContentLoaded', () => {
     burgerButton.addEventListener('click', () => {
-        if(navigationMenu.classList.contains('unvisible')) {
-            navigationMenu.classList.toggle('removed');
-        setTimeout(() => {
-            navigationMenu.classList.toggle('unvisible');
-        },100)
+        if(navigationList.classList.contains('unvisible')) {
+            navigationList.classList.toggle('removed');
+            document.body.style.overflow = 'hidden';
+            trapFocus(navigationMenu);
+            setTimeout(() => {
+                navigationList.classList.toggle('unvisible');
+            },100)
         }else{
-            navigationMenu.classList.toggle('unvisible');
-        setTimeout(() => {
-            navigationMenu.classList.toggle('removed');
-        },600)
+            navigationList.classList.toggle('unvisible');
+            document.body.style.overflow = 'auto';
+            setTimeout(() => {
+                navigationList.classList.toggle('removed');
+            },600)
         }
-        
     });
-    let aboutSlider1 = null;
-    let aboutSlider2 = null;
-    let mobileSwiper = null;
-    let mobileSwiper2 = null;
-    const BREAKPOINT = 744;
-    const BREAKPOINT2 = 1000;
     function handleMobileSwiper() {
         if (mobileSwiper === null && window.innerWidth <= BREAKPOINT) {
             mobileSwiper = new Swiper('.membership', {
                 loop: true,
-                watchSlidesProgress: true,
                 watchSlidesVisibility: true,
                 slidesPerView: 'auto',
                 spaceBetween: 12,
@@ -43,7 +75,6 @@ document.addEventListener('DOMContentLoaded', () => {
           
             mobileSwiper2 = new Swiper('.trainers', {
                 loop: true,
-                watchSlidesProdress: true,
                 watchSlidesVisibility: true,
                 slidesPerView: 'auto',
                 spaceBetween: 12,
@@ -93,7 +124,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 navigation: {
                     nextEl: '.next',
                     prevEl: '.prev'
-                }
+                },
+                a11y: false,
             });
             };
             
@@ -109,17 +141,22 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('load', handleMobileSwiper);
     window.addEventListener('resize', handleMobileSwiper, 200);
 
-    const closeModal = document.querySelector('.close');
+    const closeModal = document.querySelectorAll('.close, .modal-overlay');
     const modal = document.querySelector('.modal');
     const openModal = document.querySelectorAll('.plan-button');
-    closeModal.addEventListener('click',() => {
+    closeModal.forEach(element => {
+        element.addEventListener('click',() => {
         modal.classList.add('removed');
-    })
+        document.body.style.overflow = 'auto';
+    });
+    });
     openModal.forEach(element => {
         element.addEventListener('click', () => {
             modal.classList.remove('removed');
-        })
-    })
+            document.body.style.overflow = 'hidden';
+            trapFocus(modal);
+        });
+    });
     
 });
 
