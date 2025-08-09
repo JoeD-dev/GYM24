@@ -405,7 +405,7 @@ body {
 .contacts {
         width: fit-content;
     }
-.plan, .plan *, .social-icons, .social-icons *, .contacts-container a {
+.plan *, .social-icons, .social-icons *, .contacts-container a {
     transition: 0.2s ease !important;
 }
 .modal {
