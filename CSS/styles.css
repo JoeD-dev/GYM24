@@ -395,6 +395,7 @@ body {
     text-decoration: none;
     color: var(--color-white);
     display: flex; gap: 15px;
+    padding: 5px;
 }
 .soc-list {
     display: flex;
