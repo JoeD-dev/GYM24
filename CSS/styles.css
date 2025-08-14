@@ -130,7 +130,7 @@ body {
     max-height: 790px;
     background-image:
      linear-gradient(60deg,rgb(0, 0, 0) 35%, rgba(0, 0, 0, 0.79) 61%, rgba(0, 0, 0, 0.081) 100%),
-     url(../Images/hero-bg.jpg);
+     url(../Images/hero-bg\ \(1\)-mobile.webp);
      background-position: 
      right  center;
      background-size: clamp(300px, 70%, 400px);
@@ -200,7 +200,7 @@ body {
     max-width: 430px;
 }
 .membership {
-    padding-inline: 55px !important;
+    
     margin-top: 200px;
 }
 .plan-container,.trainer-container {
@@ -280,27 +280,36 @@ body {
 .desc-2 {
     display: none;
 }
+.img-container  li{
+    visibility: visible;
+    width: 70% !important;
+}
 .controls-container {
     display: none;
 }
 
+.pagination {
+    display: flex;
+}
 .slider-img {
     border-radius: 10px;
-    width: 70% !important;
+    width: 100% !important;
+    height: auto !important;
 }
-.swiper-pagination-bullet {
+.splide__pagination__page {
     width: 40px !important;
     height: 3px !important;
     border-radius: 0 !important;
     background-color: var(--color-white) !important;
     opacity: 1 !important;
 }
-.swiper-pagination-bullet-active {
+.splide__pagination__page.is-active{
     background-color: var(--color-yellow) !important;
+    transform: none !important;
 }
 .controls {
     display: flex;
-    gap: 10px;
+    justify-content: space-between;
     flex-basis: 100px;
 }
 .controls button {
@@ -489,6 +498,17 @@ body {
 label {
     margin-bottom: 10px;
 }
+.splide__pagination {
+        position: static !important;
+        display: flex !important;
+        padding-inline: 0 !important;
+
+    }
+    .splide__pagination li {
+        display: flex !important;
+        justify-content: center;
+        align-items: center;
+    }
     /*
 
     Add hover effects
@@ -618,7 +638,7 @@ label {
         background-image:
         linear-gradient(90deg,rgb(0, 0, 0) 15%, rgba(0, 0, 0, 0.305) 41%, rgba(0, 0, 0, 0.081) 100%),
         linear-gradient(0deg,rgba(0, 0, 0, 0.822) 5%, rgba(0, 0, 0, 0) 51%, rgba(0, 0, 0, 0.081) 100%),
-        url(../Images/hero-bg.jpg);
+        url(../Images/hero-bg.webp);
         background-size: clamp(300px, 75%, 750px);
         background-position: right top;
         gap: 60px;
@@ -664,6 +684,13 @@ label {
     }
     .address-text {
         text-align: left;
+    }
+    .splide {
+        visibility: visible !important;
+
+    }
+    .splide__list {
+        display: flex !important;
     }
 }
 @media(min-width: 1000px) {
@@ -713,7 +740,8 @@ label {
         gap: 55px;
     }
     .controls-container {
-        display: flex;
+        display: flex !important;
+        justify-content: space-between;
     }
     .about-us{
         max-height: 600px;
@@ -728,7 +756,7 @@ label {
         margin-top: auto;
         max-width: 570px;
     }
-    .slider-img {
+    .img-container li {
         width: 100% !important;
     }
     .about-us-desc {

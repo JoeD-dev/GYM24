@@ -1,20 +1,34 @@
 const burgerButton = document.querySelector('.burger');
 const navigationMenu = document.querySelector('.navigation');
 const navigationList = document.querySelector('.nav-list');
+const menuLink = navigationList.querySelectorAll('a');
+const allLinks = document.querySelectorAll('a');
 let aboutSlider1 = null;
 let aboutSlider2 = null;
 let mobileSwiper = null;
 let mobileSwiper2 = null;
 const BREAKPOINT = 744;
 const BREAKPOINT2 = 1000;
+let focusableElements;
 
 const getFocusableElements = (container) => {
     return container.querySelectorAll('a[href], button:not(disabled), input:not(disabled), select, textarea, [tabindex]:not([tabindex="-1"])'
     );
 };
 
+allLinks.forEach(element => {
+    let linkHref =element.getAttribute('href');
+    if (!linkHref) {
+        linkHref = '#';
+    }
+    if (linkHref === '#') {
+        element.addEventListener('click', (event) => {
+        event.preventDefault();
+    })
+    }
+})
 const trapFocus = (window) => {
-    const focusableElements = getFocusableElements(window);
+     focusableElements= getFocusableElements(window);
     const firstElement = focusableElements[0];
     const lastElement = focusableElements[focusableElements.length - 1];
 
@@ -38,7 +52,7 @@ const trapFocus = (window) => {
     setTimeout(() => firstElement?.focus(),0);
 };
 
-document.addEventListener('DOMContentLoaded', () => {
+
     burgerButton.addEventListener('click', () => {
         if(navigationList.classList.contains('unvisible')) {
             navigationList.classList.toggle('removed');
@@ -50,83 +64,113 @@ document.addEventListener('DOMContentLoaded', () => {
         }else{
             navigationList.classList.toggle('unvisible');
             document.body.style.overflow = 'auto';
+            focusableElements = [];
             setTimeout(() => {
                 navigationList.classList.toggle('removed');
             },600)
         }
     });
+    menuLink.forEach(element => {
+        element.addEventListener('click', () => {
+            navigationList.classList.add('unvisible');
+            document.body.style.overflow = 'auto';
+            setTimeout(() => {
+                navigationList.classList.add('removed');
+            },600)
+        })
+    });
     function handleMobileSwiper() {
         if (mobileSwiper === null && window.innerWidth <= BREAKPOINT) {
-            mobileSwiper = new Swiper('.membership', {
-                loop: true,
-                watchSlidesVisibility: true,
-                slidesPerView: 'auto',
-                spaceBetween: 12,
-                grabCursor: true,
-                centeredSlides: true,
-                initialSlide: 1,
-            });
+            mobileSwiper = new Splide('.membership', {
+                type: 'loop', 
+                focus: 'center', 
+                gap: '12px', 
+                start: 1, 
+                keyboard: 'global', 
+                accessibility: true, 
+                drag: true, 
+                arrows: false,
+                pagination: false,
+                trimSpace: false,
+            }).mount();
         }else if(mobileSwiper !== null && window.innerWidth > BREAKPOINT)  { 
-            mobileSwiper.destroy(true, true);
+            mobileSwiper.destroy();
             mobileSwiper = null;
             
         }
         if (mobileSwiper2 === null && window.innerWidth < BREAKPOINT2) {
           
-            mobileSwiper2 = new Swiper('.trainers', {
-                loop: true,
-                watchSlidesVisibility: true,
-                slidesPerView: 'auto',
-                spaceBetween: 12,
-                grabCursor: true,
-                centeredSlides: true,
+            mobileSwiper2 = new Splide('.trainers', {
+                type: 'loop',
+                perPage: 1, 
+                focus: 'center', 
+                gap: '35px', 
+                keyboard: 'global', 
+                accessibility: true, 
+                drag: true, 
+                arrows: false,
+                pagination: false,
+                trimSpace: false,
                 breakpoints: {
-                    744: {
-                        spaceBetween: 35,
-                    },
-                }
-            });
+                  744: {
+                    gap: '12px',
+                  }
+                },
+            }).mount();
         }else if (mobileSwiper2 !== null && window.innerWidth >= BREAKPOINT2) {
-            mobileSwiper2.destroy(true, true);
+            mobileSwiper2.destroy();
             mobileSwiper2 = null;
             
         }
         if(window.innerWidth <= BREAKPOINT2) {
             if(aboutSlider2 !== null) {
-                aboutSlider2.destroy(true, true);
+                aboutSlider2.destroy();
                 aboutSlider2 = null;
             };
             if(aboutSlider1 === null) {
-                aboutSlider1 = new Swiper ('.about-slider', {
-                loop: true,
-                pagination: false,
-                watchSlidesProgress: true,
-                watchSlidesVisibility: true,
-                slidesPerView: 'auto',
-                spaceBetween: 12,
-                centeredSlides: true,
-            });
+                aboutSlider1 = new Splide('.about-slider', {
+                    type: 'loop',
+                    perPage: 1, 
+                    focus: 'center', 
+                    gap: '12px', 
+                    start: 1, 
+                    keyboard: 'global', 
+                    accessibility: true, 
+                    drag: true, 
+                    arrows: false,
+                    pagination: false,
+                    trimSpace: false,
+               }).mount();
             };
             
         }else if(window.innerWidth > BREAKPOINT2) {
             if(aboutSlider1 !== null) {
-                aboutSlider1.destroy(true, true);
+                aboutSlider1.destroy();
                 aboutSlider1 = null;
             }; 
             if(aboutSlider2 === null) {
-                aboutSlider2 = new Swiper ('.about-slider', {
-                loop: true,
-                spaceBetween: 12,
-                slidesPerView: 1,
-                pagination: {
-                    el: '.pagination',
-                },
-                navigation: {
-                    nextEl: '.next',
-                    prevEl: '.prev'
-                },
-                a11y: false,
-            });
+                aboutSlider2 = new Splide('.about-slider', {
+                    type: 'loop',
+                    perPage: 1, 
+                    focus: 'center', 
+                    gap: '5px', 
+                    start: 1, 
+                    keyboard: 'global', 
+                    accessibility: true, 
+                    drag: true,
+                    arrows: false,
+                    pagination: true, 
+                    trimSpace: false,
+                }).mount();
+                document.querySelector('.prev').addEventListener('click', ()=> {
+                    aboutSlider2.go('<');
+                });
+                document.querySelector('.next').addEventListener('click', ()=> {
+                    aboutSlider2.go('>');
+                });
+                const pagination = document.querySelector('.splide__pagination');
+                const paginationContainer = document.querySelector('.pagination');
+                paginationContainer.appendChild(pagination);
             };
             
         }
@@ -138,7 +182,9 @@ document.addEventListener('DOMContentLoaded', () => {
             timeout = setTimeout(func,delay);
         };
     };
-    window.addEventListener('load', handleMobileSwiper);
+    window.addEventListener('load', () => {
+        handleMobileSwiper();
+    });
     window.addEventListener('resize', handleMobileSwiper, 200);
 
     const closeModal = document.querySelectorAll('.close, .modal-overlay');
@@ -158,5 +204,4 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
     
-});
 
