@@ -96,6 +96,15 @@ const trapFocus = (window) => {
         }else if(mobileSwiper !== null && window.innerWidth > BREAKPOINT)  { 
             mobileSwiper.destroy();
             mobileSwiper = null;
+            const slides = document.querySelectorAll('.splide__slide');
+            console.log(slides);
+            slides.forEach( slide => {
+                const focusable = getFocusableElements(slide);
+                console.log(focusable)
+                focusable.forEach(element => {
+                    element.removeAttribute('tabindex');
+                })
+            })
             
         }
         if (mobileSwiper2 === null && window.innerWidth < BREAKPOINT2) {
@@ -132,8 +141,7 @@ const trapFocus = (window) => {
                     type: 'loop',
                     perPage: 1, 
                     focus: 'center', 
-                    gap: '12px', 
-                    start: 1, 
+                    gap: '12px',  
                     keyboard: 'global', 
                     accessibility: true, 
                     drag: true, 
@@ -154,7 +162,6 @@ const trapFocus = (window) => {
                     perPage: 1, 
                     focus: 'center', 
                     gap: '5px', 
-                    start: 1, 
                     keyboard: 'global', 
                     accessibility: true, 
                     drag: true,
