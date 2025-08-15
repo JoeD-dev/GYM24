@@ -728,7 +728,7 @@ label {
         background-image:
         linear-gradient(90deg,rgb(0, 0, 0) 15%, rgba(0, 0, 0, 0) 51%, rgba(0, 0, 0, 0) 71%, rgba(0, 0, 0, 0.927) 100%),
         linear-gradient(0deg,rgba(0, 0, 0, 0.822) 5%, rgba(0, 0, 0, 0) 51%, rgba(0, 0, 0, 0.081) 100%),
-        url(../Images/hero-bg.jpg);
+        url(../Images/hero-bg.webp);
     }
     .membership {
         padding-inline: 30px !important;
